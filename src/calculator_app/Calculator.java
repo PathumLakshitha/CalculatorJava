@@ -28,7 +28,7 @@ public class Calculator {
     private JButton a3Button;
     private JButton button20;
 
-    double a, b, result;
+    double x, y, result;
     String op;
 
     public Calculator() {
@@ -132,7 +132,7 @@ public class Calculator {
         button11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                a = Double.parseDouble(txtDisplay.getText());
+                x = Double.parseDouble(txtDisplay.getText());
                 op = "+";
                 txtDisplay.setText("");
             }
@@ -140,9 +140,60 @@ public class Calculator {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                a = Double.parseDouble(txtDisplay.getText());
+                x = Double.parseDouble(txtDisplay.getText());
                 op = "-";
                 txtDisplay.setText("");
+            }
+        });
+        xButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                x = Double.parseDouble(txtDisplay.getText());
+                op = "*";
+                txtDisplay.setText("");
+            }
+        });
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                x = Double.parseDouble(txtDisplay.getText());
+                op = "/";
+                txtDisplay.setText("");
+            }
+        });
+        button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String backspace = null;
+
+                if(txtDisplay.getText().length() > 0)
+                {
+                    StringBuilder strB = new StringBuilder(txtDisplay.getText());
+                    strB.deleteCharAt(txtDisplay.getText().length() - 1);
+                    backspace = String.valueOf(strB);
+                    txtDisplay.setText(backspace);
+                }
+            }
+        });
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                y = Double.parseDouble(txtDisplay.getText());
+
+                if(op == "+")
+                {
+                    result = x+y;
+                    txtDisplay.setText(String.valueOf(result));
+                } else if (op == "-") {
+                    result = x-y;
+                    txtDisplay.setText(String.valueOf(result));
+                } else if (op == "*") {
+                    result = x*y;
+                    txtDisplay.setText(String.valueOf(result));
+                } else if (op == "/") {
+                    result = x/y;
+                    txtDisplay.setText(String.valueOf(result));
+                }
             }
         });
     }
